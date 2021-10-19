@@ -9,6 +9,15 @@ struct SwiftScript: ParsableCommand {
   static let projectName = "Travelog"
   /// 서버 주소
   static let serverAddress = "http://localhost:4000/graphql"
+  
+  static var configuration = CommandConfiguration(
+    abstract: """
+        A swift-based utility for performing Apollo-related tasks.
+        
+        NOTE: If running from a compiled binary, prefix subcommands with `swift-script`. Otherwise use `swift run ApolloCodegen [subcommand]`.
+        """,
+    subcommands: [DownloadSchema.self, GenerateCode.self, DownloadSchemaAndGenerateCode.self])
+  
   /// The sub-command to download a schema from a provided endpoint.
   struct DownloadSchema: ParsableCommand {
     static var configuration = CommandConfiguration(
@@ -86,4 +95,3 @@ struct SwiftScript: ParsableCommand {
 
 // This will set up the command and parse the arguments when this executable is run.
 SwiftScript.main()
-
